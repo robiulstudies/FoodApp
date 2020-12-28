@@ -42,7 +42,8 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyFoodListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Glide.with(context).load(foodModelList.get(position).getImage()).into(holder.img_food_image);
-        holder.textView_food_name.setText(new StringBuilder("").append(foodModelList.get(position).getName()));
+      //  holder.textView_food_name.setText(new StringBuilder("").append(foodModelList.get(position).getName()));
+        holder.textView_food_name.setText(foodModelList.get(position).getName());
         holder.textView_food_price.setText(new StringBuilder("$").append(foodModelList.get(position).getPrice()));
 
 

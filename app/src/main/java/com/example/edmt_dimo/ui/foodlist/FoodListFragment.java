@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,12 +30,12 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class FoodListFragment extends Fragment {
-
     private FoodListViewModel slideshowViewModel;
     private Unbinder unbinder;
     LayoutAnimationController layoutAnimationController;
     MyFoodListAdapter adapter;
 
+    ProgressBar progressBar;
     @BindView(R.id.footList_recyclerview)
     RecyclerView foodList_recyclerView;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,17 +43,19 @@ public class FoodListFragment extends Fragment {
         slideshowViewModel =
                 new ViewModelProvider(this).get(FoodListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_foodlist, container, false);
+        progressBar=root.findViewById(R.id.progressBar_id);
         unbinder= ButterKnife.bind(this,root);
         intview();
 
+        progressBar.setVisibility(View.VISIBLE);
         slideshowViewModel.getMutableLiveDataFoodList().observe(getActivity(), new Observer<List<FoodModel>>() {
             @Override
             public void onChanged(List<FoodModel> foodModels) {
+                foodModels=new ArrayList<>();
                 adapter=new MyFoodListAdapter(getContext(),foodModels);
                 foodList_recyclerView.setAdapter(adapter);
-
                 foodList_recyclerView.setLayoutAnimation(layoutAnimationController);
-                foodModels=new ArrayList<>();
+                progressBar.setVisibility(View.GONE);
             }
         });
         return root;

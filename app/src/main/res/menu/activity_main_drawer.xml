@@ -12,9 +12,7 @@
             android:id="@+id/nav_menu"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_catagory" />
-        <item
-            android:id="@+id/nav_foodlist"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_foodlist" />
+
+
     </group>
 </menu>

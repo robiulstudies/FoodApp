@@ -19,8 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.asksira.loopingviewpager.LoopingViewPager;
 import com.example.edmt_dimo.Adapter.MyBestDealsAdapter;
 import com.example.edmt_dimo.Adapter.MyPopularCategoriesAdapter;
-import com.example.edmt_dimo.EventBus.CategoryClick;
-import com.example.edmt_dimo.HomeActivity;
 import com.example.edmt_dimo.Model.PopularCategoryModel;
 import com.example.edmt_dimo.R;
 import com.google.firebase.database.DataSnapshot;
@@ -28,10 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +62,7 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_poplar);
         init();
        // loopingViewPager = view.findViewById(R.id.viewpager);
-        progressBar = view.findViewById(R.id.progressBar);
+        progressBar = view.findViewById(R.id.progressBar_id);
 
         homeViewModel.getBestDealListMutable().observe(getActivity(),bestDealModelList -> {
             MyBestDealsAdapter myBestDealsAdapter = new MyBestDealsAdapter(getActivity(), bestDealModelList, true);
